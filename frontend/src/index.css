@@ -1,0 +1,183 @@
+@import "tailwindcss";
+
+/* Enable class-based dark mode (toggled on <html class="dark">). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Teal brand scale (matches the #0C8B7C → #32B49F gradient). */
+  --color-brand-50: #e8f7f4;
+  --color-brand-100: #c7ece5;
+  --color-brand-200: #95dccd;
+  --color-brand-300: #5cc8b4;
+  --color-brand-400: #32b49f;
+  --color-brand-500: #15a18b;
+  --color-brand-600: #0c8b7c;
+  --color-brand-700: #0b7064;
+  --color-brand-800: #0c5a51;
+  --color-brand-900: #0c4a43;
+
+  /* Muted accents used by the decorative dashboard cards. */
+  --color-accent-gold: #bfa23a;
+  --color-accent-coral: #c2706a;
+  --color-accent-purple: #7e6cc0;
+  --color-accent-blue: #6f86c9;
+
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.125rem;
+
+  --shadow-soft:
+    0 1px 2px rgba(16, 24, 40, 0.04), 0 4px 16px rgba(16, 24, 40, 0.01);
+  --shadow-card:
+    0 1px 3px rgba(16, 24, 40, 0.05), 0 12px 32px -12px rgba(16, 24, 40, 0.12);
+  --shadow-pop: 0 12px 40px -8px rgba(16, 24, 40, 0.22);
+
+  --animate-fade-in: fade-in 0.25s ease-out;
+  --animate-slide-up: slide-up 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-scale-in: scale-in 0.18s ease-out;
+  --animate-pop: pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --animate-slide-in-right: slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes pop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Registered as @utility (not a plain class) so variants like
+   group-hover:bg-brand-gradient work. */
+@utility bg-brand-gradient {
+  background-image: linear-gradient(145deg, #32b49f 0%, #0c8b7c 100%);
+}
+@utility text-brand-gradient {
+  background-image: linear-gradient(145deg, #32b49f, #0c8b7c);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+:root {
+  --app-bg: #ffffff;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --border: #e8ebf0;
+  --fg: #0f172a;
+  --fg-muted: #64748b;
+}
+
+.dark {
+  --app-bg: #0a0c12;
+  --surface: #12151d;
+  --surface-2: #171b25;
+  --border: #232936;
+  --fg: #e9edf4;
+  --fg-muted: #8a93a6;
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    margin: 0;
+    background-color: var(--app-bg);
+    color: var(--fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-brand-500);
+    color: white;
+  }
+}
+
+@layer utilities {
+  .bg-app {
+    background-color: var(--app-bg);
+  }
+  .bg-surface {
+    background-color: var(--surface);
+  }
+  .bg-surface-2 {
+    background-color: var(--surface-2);
+  }
+  .text-fg {
+    color: var(--fg);
+  }
+  .text-muted {
+    color: var(--fg-muted);
+  }
+  .border-default {
+    border-color: var(--border);
+  }
+
+  .glass {
+    background: color-mix(in srgb, var(--surface) 72%, transparent);
+    backdrop-filter: blur(14px) saturate(160%);
+  }
+
+  /* Thin, themed scrollbars. */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}

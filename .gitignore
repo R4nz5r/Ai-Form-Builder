@@ -1,3 +1,4 @@
+@"
 # Dependencies
 node_modules/
 backend/node_modules/
@@ -54,3 +55,4 @@ coverage/
 # Misc
 *.tmp
 *.temp
+"@ | Set-Content .gitignore
