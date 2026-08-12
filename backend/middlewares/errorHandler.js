@@ -1,4 +1,4 @@
-import { ApiError } from "../utils/ApiError.js";
+import { ApiError } from "../utils/apiError.js";
 import { isProd } from "../config/env.js";
 
 export function notFound(req, _res, next) {

@@ -1,6 +1,6 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
-import { ApiError } from "../utils/ApiError.js";
-import { sendSuccess } from "../utils/ApiResponse.js";
+import { ApiError } from "../utils/apiError.js";
+import { sendSuccess } from "../utils/apiResponse.js";
 import {
   registerUser,
   loginUser,

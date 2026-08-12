@@ -20,7 +20,7 @@ export async function createUser({ name, email, password, avatarColor }) {
   return mapUser(rows[0]);
 }
 
-export async function findUserByEmail(email, { withPassword = false }) {
+export async function findUserByEmail(email, { withPassword = false }={}) {
   const { rows } = await query(`SELECT * FROM users WHERE email = $1`, [
     email.toLowerCase(),
   ]);
@@ -32,7 +32,7 @@ export async function findUserByEmail(email, { withPassword = false }) {
   return user;
 }
 
-export async function findUserById(id, { withPassword = false }) {
+export async function findUserById(id, { withPassword = false }={}) {
   const { rows } = await query(`SELECT * FROM users WHERE id = $1`, [id]);
   if (!rows[0]) return null;
   const user = mapUser(rows[0]);

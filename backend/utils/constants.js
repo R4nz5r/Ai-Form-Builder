@@ -26,7 +26,7 @@ export const FORM_STATUS = ["draft", "published"];
 
 export const THEMES = [
   "minimal",
-  "mordern",
+  "modern",
   "corporate",
   "gradient",
   "dark",

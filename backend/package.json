@@ -23,7 +23,7 @@
     "express",
     "forms",
     "gemini",
-    "mongodb",
+    "postgresql",
     "saas"
   ],
   "author": "",
