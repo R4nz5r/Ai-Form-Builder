@@ -8,7 +8,9 @@ export function notFound(req, _res, next) {
 export function errorHandler(err, _req, res, _next) {
   let error = err;
 
-  if (error.name === "ValidationError") {
+  if (error.type === "entity.parse.failed") {
+    error = ApiError.badRequest("Invalid JSON in request body");
+  } else if (error.name === "ValidationError") {
     const details = Object.values(error.errors).map((e) => e.message);
     error = ApiError.badRequest("Validation failed", details);
   } else if (error.name === "CastError") {
