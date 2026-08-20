@@ -8,3 +8,5 @@ router.get("/insights", insights);
 router.get("/inbox", inbox);
 
 export default router;
+
+

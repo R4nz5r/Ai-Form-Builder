@@ -22,3 +22,4 @@ export const env = {
 };
 
 export const isProd = env.nodeEnv === "production";
+

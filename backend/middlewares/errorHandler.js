@@ -31,3 +31,5 @@ export function errorHandler(err, _req, res, _next) {
     ...(error.details ? { details: error.details } : {}),
   });
 }
+
+

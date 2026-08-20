@@ -21,3 +21,5 @@ export const formSummary = asyncHandler(async (req, res) => {
   const summary = await aiService.summarizeForm(req.body.form);
   sendSuccess(res, { message: "Summary ready", data: { summary } });
 });
+
+

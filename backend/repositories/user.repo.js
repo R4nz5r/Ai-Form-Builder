@@ -59,3 +59,5 @@ export async function updateUserPassword(id, passwordHash) {
 export async function deleteUser(id) {
   await query(`DELETE FROM users WHERE id = $1`, [id]);
 }
+
+

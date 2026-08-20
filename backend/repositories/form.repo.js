@@ -159,3 +159,5 @@ export async function setCounters(id, { views, responseCount }) {
 export async function deleteForm(id) {
   await query(`DELETE FROM forms WHERE id = $1`, [id]);
 }
+
+

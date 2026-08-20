@@ -8,3 +8,5 @@ export function signToken(payload) {
 export function verifyToken(token) {
   return jwt.verify(token, env.jwtSecret);
 }
+
+

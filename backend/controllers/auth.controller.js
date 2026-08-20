@@ -60,3 +60,5 @@ export const deleteAccount = asyncHandler(async (req, res) => {
     message: "Account deleted successfully",
   });
 });
+
+
