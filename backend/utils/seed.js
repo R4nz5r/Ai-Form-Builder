@@ -406,13 +406,13 @@ const FORMS = [
 
 async function seed() {
   await connectDB();
-  const email = "alex@timetoprogram.dev";
+  const email = "ragibshahriar@gmail.com";
 
   // Clear any prior demo data (forms + responses cascade via FK)
   await query("DELETE FROM users WHERE email = $1", [email]);
 
   const user = await userRepo.createUser({
-    name: "Alex Carter",
+    name: "Ragib Shahrier", // <-- optional
     email,
     password: await bcrypt.hash("Test@1234", 10),
     avatarColor: "#0c8b7c",
@@ -468,7 +468,7 @@ async function seed() {
 
   console.log("\n✅ Seed complete");
   console.log(`📊 ${FORMS.length} forms, ${totalResponses} responses`);
-  console.log(`🔑 Login → alex@timetoprogram.dev / Test@1234`);
+  console.log(`🔑 Login → ragibshahriar@gmail.com / Test@1234`);
 
   await pool.end();
   process.exit(0);

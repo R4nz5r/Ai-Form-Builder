@@ -11,11 +11,15 @@ import { PageLoader } from "../components/ui/Feedback.jsx";
 export default function PublicForm() {
   const { slug } = useParams();
   const [form, setForm] = useState(null);
-  const [status, setStatus] = useState("loading"); // loading | ready | notfound | done
+  const [status, setStatus] = useState("loading");
   const [submitting, setSubmitting] = useState(false);
   const startedAt = useRef(Date.now());
+  const fetchedSlug = useRef(null); // <-- track which slug we've already fetched
 
   useEffect(() => {
+    if (fetchedSlug.current === slug) return; // already fetched (StrictMode's 2nd pass)
+    fetchedSlug.current = slug;
+
     formApi
       .getPublic(slug)
       .then((f) => {
@@ -82,15 +86,22 @@ function SuccessScreen({ form }) {
       <div className="relative w-full max-w-md rounded-2xl bg-white p-9 text-center shadow-[0_30px_60px_-28px_rgba(16,24,40,0.30)] ring-1 ring-slate-900/[0.06]">
         <div
           className="mx-auto grid h-16 w-16 place-items-center rounded-full text-white animate-pop"
-          style={{ background: accent, boxShadow: `0 10px 26px -8px ${accent}80` }}
+          style={{
+            background: accent,
+            boxShadow: `0 10px 26px -8px ${accent}80`,
+          }}
         >
           <CheckCircle2 className="h-9 w-9" />
         </div>
         <h1 className="mt-6 text-2xl font-bold tracking-tight text-slate-900">
           {form.settings?.thankYouMessage || "Thank you!"}
         </h1>
-        <p className="mt-2 text-sm text-slate-500">Your response has been recorded.</p>
-        <p className="mt-8 text-xs text-slate-400">Powered by Timely Forms AI</p>
+        <p className="mt-2 text-sm text-slate-500">
+          Your response has been recorded.
+        </p>
+        <p className="mt-8 text-xs text-slate-400">
+          Powered by Timely Forms AI
+        </p>
       </div>
     </div>
   );
