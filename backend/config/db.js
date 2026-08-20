@@ -76,10 +76,11 @@ export async function connectDB() {
   try {
     const { rows } = await query("SELECT current_database() AS db");
     console.log(`✅ Connected to database: ${rows[0].db}`);
-    await migrate();
-    console.log("✅ Database migration completed");
+    if (process.env.NODE_ENV !== "production") {
+      await migrate();
+      console.log("✅ Database migration completed");
+    }
   } catch (err) {
     console.error("❌ Postgres connection error:", err.message);
-    process.exit(1);
   }
 }
